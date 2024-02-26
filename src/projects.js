@@ -5,8 +5,9 @@ export default class Project {
 
     constructor(title, description, id){
       this.title = title,
-      this.description = description
-      this.id = id
+      this.description = description,
+      this.id = id,
+      this.complete = false,
       this.todosList = [];
     }
   

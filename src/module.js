@@ -26,5 +26,16 @@ export default class Module {
         project.id = index;
       });
     }
+
+    findIndexById(id){
+        return this.projectsList.findIndex((project) => project.id === id);
+    }
+
+    markAsComplete(id) {
+        const INDEX = this.findIndexById(id);
+        if (INDEX !== -1){
+            this.projectsList[INDEX]["complete"] = true;
+        }
+    }
   
   }
