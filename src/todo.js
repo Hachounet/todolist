@@ -4,6 +4,7 @@ export default class ToDo {
       this.description = description,
       this.priority = priority,
       this.id = id
+      this.complete = false;
     }
   
   }

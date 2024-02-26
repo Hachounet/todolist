@@ -1,6 +1,8 @@
 import ToDo from "./todo";
 
 export default class Project {
+
+
     constructor(title, description, id){
       this.title = title,
       this.description = description
@@ -13,22 +15,40 @@ export default class Project {
       this.todosList.push(newToDo);
     }
   
-    removeToDo(id){
-      this.todosList = this.todosList.filter((todo) => todo.id !== id);
+    removeToDo(id) {
+        const INDEX = this.findIndexById(id);
+        if (INDEX !== -1) {
+            this.todosList.splice(INDEX, 1);
+        } else {
+            console.log("Invalid ID:", id);
+        }
     }
   
     editToDo(id, propertyName, propertyContent) {
-      const index = this.todosList.findIndex((todo) => todo.id === id);
-      if (index !== -1) {
+
+    const INDEX = this.findIndexById(id);
+      if (INDEX !== -1) {
         // Check if the property exists in the to-do item
-        if (this.todosList[index][propertyName] !== undefined) {
-          this.todosList[index][propertyName] = propertyContent;
+        if (this.todosList[INDEX][propertyName] !== undefined) {
+          this.todosList[INDEX][propertyName] = propertyContent;
         } else {
           console.log("Property does not exist:", propertyName);
         }
       } else {
         console.log("Invalid ID:", id);
       }
+    }
+
+    findIndexById(id){
+        return this.todosList.findIndex((todo) => todo.id === id);
+    }
+
+    markAsComplete(id){
+        const INDEX = this.findIndexById(id);
+        if (INDEX !== -1){
+            this.todosList[INDEX]["complete"] = true;
+        }
+
     }
   
     updateToDoList(){

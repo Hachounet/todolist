@@ -25,5 +25,6 @@ project1.updateToDoList();
 
 console.log("I have deleted odo 0 and updated todolist")
 
+project1.markAsComplete(0)
 // Display projects after removing todo
 module.displayProject();
