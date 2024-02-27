@@ -8,7 +8,8 @@ export default class Project {
       this.description = description,
       this.id = id,
       this.complete = false,
-      this.todosList = [];
+      this.todosList = [],
+      this.category = "En cours"
     }
   
     addToDo(title, description, priority){
@@ -17,7 +18,7 @@ export default class Project {
     }
   
     removeToDo(id) {
-        const INDEX = this.findIndexById(id);
+        const INDEX = this.findToDoIndexById(id);
         if (INDEX !== -1) {
             this.todosList.splice(INDEX, 1);
         } else {
@@ -27,7 +28,7 @@ export default class Project {
   
     editToDo(id, propertyName, propertyContent) {
 
-    const INDEX = this.findIndexById(id);
+    const INDEX = this.findToDoIndexById(id);
       if (INDEX !== -1) {
         // Check if the property exists in the to-do item
         if (this.todosList[INDEX][propertyName] !== undefined) {
@@ -40,12 +41,12 @@ export default class Project {
       }
     }
 
-    findIndexById(id){
+    findToDoIndexById(id){
         return this.todosList.findIndex((todo) => todo.id === id);
     }
 
-    markAsComplete(id){
-        const INDEX = this.findIndexById(id);
+    markToDoAsComplete(id){
+        const INDEX = this.findToDoIndexById(id);
         if (INDEX !== -1){
             this.todosList[INDEX]["complete"] = true;
         }

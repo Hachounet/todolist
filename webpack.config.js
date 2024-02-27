@@ -12,6 +12,24 @@ module.exports = {
   },
   devServer: {
     static: path.resolve(__dirname, './dist'),
+    hot:true,
   },
   plugins: [new HtmlWebpackPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+      },
+    ],
+  },
 };

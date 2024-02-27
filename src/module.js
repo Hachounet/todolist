@@ -11,7 +11,7 @@ export default class Module {
       return newProject;
     }
   
-    displayProject(){
+    displayAllProjects(){
       this.projectsList.forEach((project) => {
         console.log(project);
       });
@@ -27,12 +27,24 @@ export default class Module {
       });
     }
 
-    findIndexById(id){
+    findProjectIndexById(id){
         return this.projectsList.findIndex((project) => project.id === id);
     }
 
+    findProjectByName(name){
+      return this.projectsList.find(project => project.title === name);
+    }
+
+    changeProjectCategory(name, categoryName){
+      const INDEX = this.findProjectIndexById(id);
+      if ( INDEX !== -1 ){
+        this.projectsList[INDEX]["category"] = categoryName;
+      }
+
+    }
+
     markAsComplete(id) {
-        const INDEX = this.findIndexById(id);
+        const INDEX = this.findProjectIndexById(id);
         if (INDEX !== -1){
             this.projectsList[INDEX]["complete"] = true;
         }
